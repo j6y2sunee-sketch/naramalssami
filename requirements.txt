@@ -2,3 +2,4 @@ gTTS
 groq
 streamlit
 flet
+firebase-admin
