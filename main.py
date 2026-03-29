@@ -300,7 +300,7 @@ def main(page: ft.Page):
 
             return ft.Row([
                 ft.Container(content=ft.Column([ft.Text("🤖", size=50), ft.Text("AI 자동 출제", size=20, weight="bold"), spell_grade, ft.ElevatedButton("AI 출제 시작", on_click=start_ai_generation, bgcolor="#8D6E63", color="white")], alignment="center", horizontal_alignment="center"), width=300, height=350, bgcolor="#F5F5F5", border_radius=20, padding=20),
-                ft.Container(content=ft.Column([ft.Text("✍️", size=50), ft.Text("교사 직접 출제", size=20, weight="bold"), ft.ElevatedButton("교사 직접 출제하기", on_click=go_manual_teacher)], alignment="center", horizontal_alignment="center"), width=300, height=350, bgcolor="#F5F5F5", border_radius=20, padding=20)
+                ft.Container(content=ft.Column([ft.Text("✍️", size=50), ft.Text("교사 직접 출제", size=20, weight="bold"), ft.ElevatedButton("직접 출제하기", on_click=go_manual_teacher)], alignment="center", horizontal_alignment="center"), width=300, height=350, bgcolor="#F5F5F5", border_radius=20, padding=20)
             ], spacing=30, alignment="center")
 
         def get_literacy_management_view():
@@ -403,7 +403,7 @@ def main(page: ft.Page):
                     
                 add_v(None); add_q(None)
                 content_area.content = ft.Column([
-                    ft.Row([ft.TextButton("⬅️ 뒤로가기", on_click=lambda e: menu_click(e, "문해력 관리")), ft.Text("✍️ 문해력 교사 직접 출제", size=24, weight="bold")]), ft.Divider(),
+                    ft.Row([ft.TextButton("⬅️ 뒤로가기", on_click=lambda e: menu_click(e, "문해력 관리")), ft.Text("✍️ 문해력 직접 출제", size=24, weight="bold")]), ft.Divider(),
                     ft.Row([ft.Text("1. 어휘 등록"), ft.ElevatedButton("➕ 추가", on_click=add_v)]), vocab_list, ft.Divider(),
                     ft.Text("2. 지문 등록"), passage_field, ft.Divider(),
                     ft.Row([ft.Text("3. 문제 등록"), ft.ElevatedButton("➕ 추가", on_click=add_q)]), question_list, ft.Divider(),
@@ -414,7 +414,7 @@ def main(page: ft.Page):
 
             return ft.Row([
                 ft.Container(content=ft.Column([ft.Text("🤖", size=50), ft.Text("AI 통합 출제", size=20, weight="bold"), lit_grade, ft.ElevatedButton("시작하기", on_click=start_ai_literacy_generation, bgcolor="#8D6E63", color="white")], alignment="center", horizontal_alignment="center"), width=300, height=400, bgcolor="#F5F5F5", border_radius=20, padding=20),
-                ft.Container(content=ft.Column([ft.Text("✍️", size=50), ft.Text("교사 직접 출제", size=20, weight="bold"), ft.ElevatedButton("교사 직접 출제", on_click=go_manual_literacy)], alignment="center", horizontal_alignment="center"), width=300, height=400, bgcolor="#F5F5F5", border_radius=20, padding=20)
+                ft.Container(content=ft.Column([ft.Text("✍️", size=50), ft.Text("교사 직접 출제", size=20, weight="bold"), ft.ElevatedButton("직접하기", on_click=go_manual_literacy)], alignment="center", horizontal_alignment="center"), width=300, height=400, bgcolor="#F5F5F5", border_radius=20, padding=20)
             ], alignment="center", spacing=30)
 
         def get_writing_management_view():
@@ -457,7 +457,7 @@ def main(page: ft.Page):
                         page.update()
 
                 content_area.content = ft.Column([
-                    ft.Row([ft.TextButton("⬅️ 뒤로가기", on_click=lambda e: menu_click(e, "글쓰기 관리")), ft.Text("✍️ 교사 직접 제시", size=24, weight="bold")]),
+                    ft.Row([ft.TextButton("⬅️ 뒤로가기", on_click=lambda e: menu_click(e, "글쓰기 관리")), ft.Text("✍️ 직접 제시", size=24, weight="bold")]),
                     topic_field, guide_field, ft.ElevatedButton("배포", bgcolor="green", color="white", on_click=manual_save),
                     feedback_text
                 ], scroll="always")
@@ -465,7 +465,7 @@ def main(page: ft.Page):
                 
             return ft.Row([
                 ft.Container(content=ft.Column([ft.Text("🤖", size=50), ft.Text("AI 주제 추천", size=20, weight="bold"), write_grade, ft.ElevatedButton("시작", on_click=start_ai_writing_generation)], alignment="center", horizontal_alignment="center"), width=300, height=400, bgcolor="#F5F5F5", border_radius=20, padding=20),
-                ft.Container(content=ft.Column([ft.Text("✍️", size=50), ft.Text("교사 직접 제시", size=20, weight="bold"), ft.ElevatedButton("시작", on_click=go_manual_writing)], alignment="center", horizontal_alignment="center"), width=300, height=400, bgcolor="#F5F5F5", border_radius=20, padding=20)
+                ft.Container(content=ft.Column([ft.Text("✍️", size=50), ft.Text("직접 제시", size=20, weight="bold"), ft.ElevatedButton("시작", on_click=go_manual_writing)], alignment="center", horizontal_alignment="center"), width=300, height=400, bgcolor="#F5F5F5", border_radius=20, padding=20)
             ], alignment="center", spacing=30)
 
         def get_board_management_view():
@@ -1978,4 +1978,5 @@ def main(page: ft.Page):
     page.on_resize = lambda e: (setattr(bg_img, "width", page.window_width), setattr(bg_img, "height", page.window_height), page.update())
     show_login_screen()
 
-ft.app(target=main, assets_dir="assets")
+if __name__ == "__main__":
+    ft.app(target=main, assets_dir="assets", view=ft.AppView.WEB_BROWSER)
